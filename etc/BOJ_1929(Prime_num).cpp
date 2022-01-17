@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+//에라토스테네스의 체를 사용한 소수 판별 algorithm 구현
+
 using namespace std;
 
 int main(){
