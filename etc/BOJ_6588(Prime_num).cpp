@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//에라토스테네스의 체를 함수화 하여 사용한 소수 판별 
+
 int arr[MAX];
 
 void primeArr(){
@@ -29,7 +31,7 @@ int main(){
     cout.tie(NULL);
     
     int n;
-    primeArr();
+    primeArr(); // 각각의 testcase에 대한 소수 판별은 시간 초과를 발생시키므로 이미 소수를 판별해 놓도록 설정
     
     while(1){
         
@@ -40,7 +42,7 @@ int main(){
         
         for(int i=3; i<=n; i++){
             
-            if(arr[i] !=0 && arr[n-arr[i]]!=0 ) 
+            if(arr[i] !=0 && arr[n-arr[i]]!=0 ) // 조건을 만족하는 소수의 집합 중에서 최대의 차이를 발생하는 소수에 대한 출력을 for조건문을 통해 index안에서 확인
             {
                 a = arr[i];
                 b = arr[n-arr[i]];
