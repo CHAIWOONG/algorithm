@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// maxheap과 minheap으로 중앙값 만들기
+
 priority_queue<int> maxHeap;
 priority_queue<int, vector<int>, greater<int>> minHeap;
 
