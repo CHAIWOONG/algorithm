@@ -5,6 +5,8 @@
 #define X first
 #define Y second // pair에서 first, second를 줄여서 쓰기 위해서 사용
 
+// 불의 전파와 사람의 이동이 서로 영향을 미치지 않기 때문에, 각각을 bfs를 따로 해서 비교하면 된다.
+
 using namespace std;
 
 //int board[1001][1001]; board를 두어 입력에서 바로 체크 한후 확인할 수 있으나 해당 문제는 생략
