@@ -32,7 +32,7 @@ void fire_bfs(queue<pair<int,int>>& q) // 불에 대한 bfs (일반적 bfs)
             if(fire_dis[nx][ny]>=0 || fire_dis[nx][ny]== -2) continue; // 조건에 따라 벽을 제외하고 이미 방문한 노드도 제외
             
             q.push({nx,ny}); 
-            fire_dis[nx][ny] = fire_dis[temp.X][temp.Y]+1; // dis 배열의 특성에 맞춰 현재 temp좌표 (queue의 top)의 값에서 1 더한 채로 업데이트하여  
+            fire_dis[nx][ny] = fire_dis[temp.X][temp.Y]+1; // dis 배열의 특성에 맞춰 현재 temp좌표(queue의 top)의 값에서 1 더한 채로 업데이트.(시작점에서부터의 distance가 구현된다)
         }
     }
 }
@@ -56,7 +56,7 @@ void bfs(queue<pair<int,int>>& q)
             if(man_dis[nx][ny] >=0 || man_dis[nx][ny] ==-2) continue; // 벽(-2),이미 간곳(>=0) 제외
             if(fire_dis[nx][ny] != -1 && fire_dis[nx][ny] <= man_dis[temp.X][temp.Y]+1) 
                 continue; 
-            // 불의 이동 계산 (불이 -1인 자리 중에서)
+            // 불의 이동 계산 (****불이 -1이 아닌 자리 중에서 제외를 시켜서 불이 갈 수 없는 곳인데 제외되는 상황을 막는다.)
             // 자신이 도착한 시간과 동시에 불이 도착하거나, 자신이 불보다 늦게 도착하는 경우
             
             q.push({nx,ny});
@@ -79,7 +79,7 @@ int main()
     
     for(int i = 0; i < row; i++){
         fill(man_dis[i], man_dis[i]+col, -1);
-        fill(fire_dis[i], fire_dis[i]+col, -1);    
+        fill(fire_dis[i], fire_dis[i]+col, -1);    // fill 함수를 통해 distance에 해당하는 초기 값을 -1로 선언
     }
     
     for(int i=0; i<row; i++){
@@ -88,15 +88,15 @@ int main()
         {
             if(str[j] == '#'){
                 man_dis[i][j] = -2;
-                fire_dis[i][j] = -2;
+                fire_dis[i][j] = -2; // # 은 벽으로 아예 이동이 제한
             }
             if(str[j] == 'J'){ 
                 manq.push({i,j});
-                man_dis[i][j] = 0;
+                man_dis[i][j] = 0; // man의 bfs 시작 지점
             }
             if(str[j] == 'F') {
                 fireq.push({i,j});
-                fire_dis[i][j] = 0;
+                fire_dis[i][j] = 0; // fire의 bfs 시작 
             }
         }
     }
