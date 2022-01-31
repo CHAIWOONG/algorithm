@@ -4,6 +4,9 @@
 #include <queue>
 #include <string>
 
+// 오름차순, 중복제외 등의 조건에 맞춰서 arr vector에 조건을 만족하는 조합을 집어넣는다.
+// 이 후, 출력을 하기 전에 모음의 수, 자음의 수와 같은 조건을 만족하는지 파악하여 해당 조건까지 만족하는 것 만, 출력을 하도록 구현
+
 using namespace std;
 
 int n, m;
