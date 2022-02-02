@@ -18,7 +18,7 @@ int backArr[8]; // 백트래킹으로 나온 cctv의 종류별 방향 조합 저
 int dx[4] = { 0,-1,0,1 }; // 우, 상, 좌, 하
 int dy[4] = { 1,0,-1,0 };
 
-void seeDirect(pair<int, int>& temp, int k) { // cctv에서 오른 방향 확인
+void seeDirect(pair<int, int>& temp, int k) { // cctv에서 오른 방향 확인 (bfs 코드의 수정으로 사용하여 빛이 한칸씩 뻗어나가도록 함)
 
     // 우(k=0), 상(k=1), 좌(k=2), 하(k=3)
 
