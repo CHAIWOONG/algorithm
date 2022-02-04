@@ -67,6 +67,8 @@ int cctvGet() {
             seeDirect(temp, (backArr[i] + 2) % 4); seeDirect(temp, (backArr[i] + 3) % 4);
         }
     }
+    
+    // ------------------------------각 cctv에서 방향에 따른 seeDirect함수에서 변경된 전역변수 vis 배열의 값을 통해 방문된 곳을 확인하여 개수 체크 ------------------------
 
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
@@ -83,7 +85,7 @@ int cctvGet() {
 // cctv는 [1,3,4는 4방향], [2는 2방향], [5는 1방향]
 // cctv의 최대 개수는 8개
 
-void func(vector<pair<int, int>>& v, int k) {// 백트래킹으로 회전 조합??
+void func(vector<pair<int, int>>& v, int k) {    // 백트래킹으로 회전 조합을 결정
 
     // 우(k=0), 상(k=1), 좌(k=2), 하(k=3)
     if (k == v.size()) {
@@ -94,24 +96,24 @@ void func(vector<pair<int, int>>& v, int k) {// 백트래킹으로 회전 조합
     else {
         for (int i = 0; i < 4; i++) {
 
-            if (board[v[k].X][v[k].Y] == 1) { // 1번 cctv (0,1,2,3)
+            if (board[v[k].X][v[k].Y] == 1) { // 1번 cctv (0,1,2,3) [방향 변경이 4번]
                 backArr[k] = i;
                 func(v, k + 1);
             }
-            else if (board[v[k].X][v[k].Y] == 2) { // 2번 cctv (0,1)
+            else if (board[v[k].X][v[k].Y] == 2) { // 2번 cctv (0,1) [방향 변경이 2번]
                 if (i == 0 || i == 1) backArr[k] = i;
                 else backArr[k] = i - 2;
                 func(v, k + 1);
             }
-            else if (board[v[k].X][v[k].Y] == 3) { // 3번 cctv (0,1,2,3)
+            else if (board[v[k].X][v[k].Y] == 3) { // 3번 cctv (0,1,2,3) [방향 변경이 4번]
                 backArr[k] = i;
                 func(v, k + 1);
             }
-            else if (board[v[k].X][v[k].Y] == 4) { // 4번 cctv (0,1,2,3)
+            else if (board[v[k].X][v[k].Y] == 4) { // 4번 cctv (0,1,2,3) [방향 변경이 4번]
                 backArr[k] = i;
                 func(v, k + 1);
             }
-            else if (board[v[k].X][v[k].Y] == 5) { // 5번 cctv (0) 
+            else if (board[v[k].X][v[k].Y] == 5) { // 5번 cctv (0) [방향 변경이 0번]
                 backArr[k] = 0;
                 func(v, k + 1);
             }
@@ -136,7 +138,7 @@ int main()
         }
     }
 
-    func(v, 0);
+    func(v, 0); // 조합 
 
     sort(cntVec.begin(), cntVec.end()); cout << cntVec[0];
 
