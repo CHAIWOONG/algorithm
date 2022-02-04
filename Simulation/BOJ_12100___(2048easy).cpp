@@ -34,7 +34,8 @@ void rotation() { // 90도 회전
 int moving() { // 좌로 미는 것만 구현하고 나머지 방향은 rotation하여 좌로 만들어 사용 (******* 문제를 간단하게 만들기)
 
     int tempmx = 0;
-
+    //---------------------------------------- 판을 움직이는 부분 --------------------------------------------
+    
     for (int i = 0; i < n; i++) { // 하나의 행에 대해서 따로 처리 (******* 문제를 나눠서 풀기)
 
         int tmp[21] = { 0, }; // 행에 대해서 계산을 임시로 저장할 일직선 배열
@@ -44,24 +45,21 @@ int moving() { // 좌로 미는 것만 구현하고 나머지 방향은 rotation
 
             if (board2[i][j] == 0) continue; // 실제 board의 값이 0이면 무시
 
-            if (tmp[idx] == 0) // tmp가 0이면 그냥 바로 저장
+            if (tmp[idx] == 0)                     // <tmp가 0이면> 그냥 바로 board의 값에서 tmp 배열에 저장
                 tmp[idx] = board2[i][j];
-            else if (tmp[idx] != 0) {
-                if (tmp[idx] == board2[i][j]) {
-                    tmp[idx] += board2[i][j];
-                    idx++;
-                    // tmp 저장값이 현재의 값과 같으면 한번 더하고 더이상 계산 못하도록 index 증가시킴
+            else if (tmp[idx] != 0) {              // <tmp에 저장된 값이 존재 할 때>
+                if (tmp[idx] == board2[i][j]) {    // <tmp 저장값이 현재의 값과 같으면> 한번 더하고 더이상 계산 못하도록 index 증가시킴
+                    tmp[idx] += board2[i][j]; 
+                    idx++;                           
                 }
-                else tmp[++idx] += board2[i][j];
-                // tmp 저장값이 현재의 값과 다르면 그다음 index에 값을 추가하여 쌓음
+                else tmp[++idx] += board2[i][j];  // <tmp 저장값이 현재의 값과 다르면> 기존 idx 다음의 index 칸에 board의 값을 추가하여 쌓음
             }
         }
-
-        for (int j = 0; j < n; j++) // 각 행의 처리에 대해 원래 board2에 삽입
+        for (int j = 0; j < n; j++)         // 각 행의 처리에 대해 원래 board2에 삽입
             board2[i][j] = tmp[j];
     }
-
-
+    
+    //----------------------------------------최대 블록 찾는 부분--------------------------------------------
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++)
             if (board2[i][j] > tempmx) tempmx = board2[i][j];
@@ -69,7 +67,7 @@ int moving() { // 좌로 미는 것만 구현하고 나머지 방향은 rotation
     return tempmx; // board2에서 최대 블록 저장해서 return
 }
 
-void moveDics(int k) { // 5번의 이동에서 방향 조합을 백트래킹으로 구함
+void moveDics(int k) { // 5번의 이동에서 방향의 조합을 백트래킹으로 구함
 
     if (k == 5) { // 1개의 5번 회전 방향 조합이 완성되었을 때,
 
@@ -91,8 +89,7 @@ void moveDics(int k) { // 5번의 이동에서 방향 조합을 백트래킹으�
         return;
     }
     else {
-
-        for (int i = 1; i <= 4; i++) { // 중복제거 X, 오름차순 X
+        for (int i = 1; i <= 4; i++) { // 중복 제거 필요X, 오름차순 필요 X
             arr[k] = i;
             moveDics(k + 1);
         }
