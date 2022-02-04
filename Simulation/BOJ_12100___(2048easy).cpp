@@ -80,9 +80,9 @@ void moveDics(int k) { // 5번의 이동에서 방향의 조합을 백트래킹�
         for (int i = 0; i < 5; i++) {
 
             int rotcnt = arr[i] - 1; // 좌(k=1), 하(k=2), 우(k=3), 상(k=4)
-                                   // 좌(0회전), 하(1회전), 우(2회전), 상(3회전)
+                                     // 좌(0회전), 하(1회전), 우(2회전), 상(3회전)
             while (rotcnt--) rotation();
-            temp = moving();
+            temp = moving();         // 다시 회전을 되돌리지 않아도 조합에서 전부 다른 방향으로 처리 될것이므로 되돌리지 
         }
 
         if (mx < temp) mx = temp; // 한번의 시도에서 받아온 최대 블록 temp가 기존보다 크면 update
