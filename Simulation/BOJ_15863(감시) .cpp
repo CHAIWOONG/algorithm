@@ -5,6 +5,8 @@
 #define X first
 #define Y second
 
+// https://github.com/encrypted-def/basic-algo-lecture/blob/master/0x0D/15683.cpp#L23 (같은 문제 다른 코드)
+
 using namespace std;
 
 vector<pair<int, int>> v;
