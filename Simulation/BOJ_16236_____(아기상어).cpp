@@ -71,7 +71,7 @@ int sEat() { // board와 dis[][]를 확인하여 다음 먹을 물고기 하나�
         }
 
         board[food[0].X][food[0].Y] = 0; // 먹이는 먹었으므로 0 초기화
-        fill(&dis[0][0], &dis[n][n], 0); // 거리의 dis 배열 초기화
+        fill(&dis[0][0], &dis[n][n], 0); // 거리의 dis 배열 초기화 **** 2차원 배열을 채움
         dis[food[0].X][food[0].Y] = 1; // dis 배열에다 새로운 시작 위치의 값 1 초기화
 
         food.pop_back(); // 먹이 바구니 비움
