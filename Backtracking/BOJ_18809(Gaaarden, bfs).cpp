@@ -35,12 +35,13 @@ int bfs(){
     int flowercnt = 0;
     
     // 빨간색 배양액 뿌리고, 그 다음 초록색 뿌려서 거리가 같으면 꽃이피고 더이상 안퍼짐
-    while(!Rq.empty() || !Gq.empty()){ //*********************************************************
+    while(!Rq.empty() || !Gq.empty()){ //**********둘 중에 하나의 queue가 빌 때 까지
         
-        int rqtmp = Rq.size();
+        int rqtmp = Rq.size(); //****************
         int gqtmp = Gq.size();
         
-        while(rqtmp--){ // 빨간색 배양액 부터 bfs
+        while(rqtmp--){ // 빨간색 배양액 부터 bfs, 
+               // queue가 빌 때 까지 진행하는 것이 아니라 초기의 queue size 만큼만 반복하므로 하나의 term에서 빨간색과 초록색이 번갈아 가면서 진행된다 
             
             pii Rtemp = Rq.front(); Rq.pop();
             
