@@ -41,7 +41,7 @@ int bfs(){
         int gqtmp = Gq.size();
         
         while(rqtmp--){ // 빨간색 배양액 부터 bfs, 
-               // queue가 빌 때 까지 진행하는 것이 아니라 초기의 queue size 만큼만 반복하므로 하나의 term에서 빨간색과 초록색이 번갈아 가면서 진행된다 
+               // ***** queue가 빌 때 까지 진행하는 것이 아니라 초기의 queue size 만큼만 반복하므로 하나의 term에서 빨간색과 초록색이 번갈아 가면서 진행된다 
             
             pii Rtemp = Rq.front(); Rq.pop();
             
