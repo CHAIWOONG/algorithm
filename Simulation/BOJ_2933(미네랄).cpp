@@ -36,7 +36,7 @@ void stkThr(int flag) { // vector에 저장한 막대기 높이 받아와 던짐
     }
 }
 
-void clusterDown() {
+void clusterDown() { // 클러스터에 대해서 뭉쳐서 중력으로 내려옴
 
     int dis = 100;
     int visflag = vis[clusterV[0].X][clusterV[0].Y];
@@ -61,27 +61,35 @@ void clusterDown() {
             // 미네랄에 닿았는데 그것이 vis로 보았을 때 다른 미네랄이라면 증가를 멈춤
             nrow++;
         }
-        if (nrow - 1 < dis) dis = nrow - 1;
+        
+        if (nrow - 1 < dis) dis = nrow - 1; // 최소값의 내림 거리 계산
     }
-
-    for (int i = 0; i < clusterV.size(); i++) {
+    
+    //******** 삭제와 추가를 동시에 진행하면 같은 클러스터에서 같은 열의 다른 행이 존재하는 경우 엉켜서 지워진다. 삭제 따로 마무리 하고 dis만큼 더하여 한번에 추가하는 방식으로 해야 한다.
+    
+    for (int i = 0; i < clusterV.size(); i++) { // ******** 이동하기 전에 것은 삭제
 
         int tmpX = clusterV[i].X;
         int tmpY = clusterV[i].Y;
-
-        board[tmpX + dis][tmpY] = 'x';
+        
         board[tmpX][tmpY] = '.';
-
-        vis[tmpX + dis][tmpY] = visflag;
         vis[tmpX][tmpY] = 0;
+    }
+    
+    for (int i = 0; i < clusterV.size(); i++) { // ********* dis 만큼 이동하여 추가
 
+        int tmpX = clusterV[i].X;
+        int tmpY = clusterV[i].Y;
+        
+        board[tmpX + dis][tmpY] = 'x';
+        vis[tmpX + dis][tmpY] = visflag;
     }
 
     if (!clusterV.empty()) clusterV.clear(); // 완전히 종료되면 해당 cluster의 vector는 clear
     return;
 }
 
-void clusterBfs(int& r, int& c) { // bfs로 같은 클러스터 인지 확인
+void clusterBfs(int& r, int& c) { // 출발점 받아서 bfs로 같은 클러스터 인지 확인
 
     queue<pii> q; q.push({ r,c }); clusterV.push_back({ r,c });
     vis[r][c] = clustercnt;
@@ -103,7 +111,7 @@ void clusterBfs(int& r, int& c) { // bfs로 같은 클러스터 인지 확인
             clusterV.push_back({ nx,ny });
         }
     }
-    clustercnt++;
+    clustercnt++; // 하나의 bfs에서 클러스터 구분을 위해 증가
 }
 
 void clusterCheck() {
@@ -123,11 +131,8 @@ int main()
     cin.tie(0); cout.tie(0);
 
     cin >> row >> col;
-    for (int i = 0; i < row; i++) for (int j = 0; j < col; j++) {
-        //char c; cin>>c;
+    for (int i = 0; i < row; i++) for (int j = 0; j < col; j++)
         cin >> board[i][j];
-        //BdGet(c,i,j);
-    }
 
     cin >> num;
     for (int i = 0; i < num; i++) {
@@ -138,10 +143,11 @@ int main()
 
         stkThr(j); // 막대기 던짐
         clusterCheck(); // 미네랄 떨어질꺼 떨어지고
-
-        for (int i = 0; i < row; i++) for (int j2 = 0; j2 < col; j2++) vis[i][j2] = 0; // vis 초기화
+        
+        for (int i = 0; i < row; i++) for(int j2 = 0; j2 < col; j2++) vis[i][j2] = 0; // vis 초기화
     }
-
+    
+    // 출력
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++)
             cout << board[i][j];
@@ -151,4 +157,3 @@ int main()
 
     return 0;
 }
-
