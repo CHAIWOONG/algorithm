@@ -2,6 +2,8 @@
 #define X first
 #define Y second
 
+// 계산이 되어야 할 것을 조합을 정한 후에 계산하지 말고 먼저 계산해서 저장해둔 다음에 조합을 사용함으로써 최대한 계산을 적게 한다. (메모리제이션)
+
 using namespace std;
 using pii = pair<int, int>;
 
@@ -71,7 +73,7 @@ int bfs(const int& sr, const int& sc, const int& er, const int& ec) {
     return dis[er][ec] - 1;
 }
 
-//******방문 순서를 먼저 정한 다음에 bfs를 실행하여 그 때 마다 거리를 구하면 시간초과
+// ******방문 순서를 먼저 정한 다음에 bfs를 실행하여 그 때 마다 거리를 구하면 시간초과
 // 거리를 먼저 계산한 후, 조합으로 방문할 순서를 정하여 계산하는 것이 훨씬 빠르다
 
 void RouteDesic(int k) { // 로봇 -> 먼지 후 먼지 끼리의 방문 순서 조합 결정
@@ -114,7 +116,7 @@ int main()
         }
         dirtcnt = dirstV.size();
 
-        // 로봇과 각 먼지 사이의 거리를 일단 저장
+        // --------------------------------------------------------------- 로봇과 각 먼지 사이의 거리를 일단 저장
         for (int i = 0; i < dirtcnt; i++) {
             int tmp = bfs(Rx, Ry, dirstV[i].X, dirstV[i].Y);
             if (tmp == -1) { flag = 1; break; } // 갈 수 없으면 바로 종료
@@ -124,7 +126,7 @@ int main()
         }
         disReset();
 
-        // 각 먼지 끼리의 거리를 저장
+        // ----------------------------------------------------------------- 각 먼지 끼리의 거리를 저장
         for (int i = 0; i < dirtcnt; i++) {
             for (int j = i + 1; j < dirtcnt; j++) {
                 if (!DtoD[i][j] && !DtoD[j][i]) {
@@ -139,11 +141,11 @@ int main()
         if (flag == 1) cout << "-1\n";
         else {
 
-            RouteDesic(0); // 이동 순서 조합 결정
+            RouteDesic(0); // --------------------------------------------------- 이동 순서 조합 결정
             cout << mn << "\n";
         }
 
-        //*********초기화
+        // -----------------------------------------------------------------*********초기화
         BdReset();
         dirstV.clear();
         mn = 99999999;
