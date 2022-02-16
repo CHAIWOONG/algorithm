@@ -67,7 +67,6 @@ void fishMv(){ // 물고기가 크기순으로 이동하는 함수
             if(!rangecheck(desX,desY) || (board[desX][desY]==-1)) {fish[i].tmpDir++;}
             else break;
         }
-        
         int dFish = board[desX][desY]; // 목적지에 있는 물고기 크기
         
         // 원래 누가 있었으면 swap
@@ -94,10 +93,10 @@ void sDecis(int x, int y, int dir, int sum){ // 상어 이동범위 결정 backt
     int count = 1;
     if(sum > ans) ans = sum;
     
-    int tmpBd[4][4]; // 임시의 board 선언으로 이 후 계산 진행
+    int tmpBd[4][4]; // *****임시의 board 선언으로 이 후 계산 진행
     Fish tmpfish[20];
     
-    copyBd(tmpBd, board, tmpfish, fish); // 이동 전에 임시 배열에 복사해둠
+    copyBd(tmpBd, board, tmpfish, fish); // ******이동 전에 임시 배열에 복사해둠
     fishMv();
     
     for(int i=1; i<=3; i++){ // 최대 3칸 이동 가능
@@ -105,19 +104,18 @@ void sDecis(int x, int y, int dir, int sum){ // 상어 이동범위 결정 backt
         desX = x + (dx[(dir-1)%8]*i); // 상어 목적지
         desY = y + (dy[(dir-1)%8]*i);
 
-        if(!rangecheck(desX, desY)) break;
+        if(!rangecheck(desX, desY)) break; // 범위 이상이면 제외(어짜피 더 못가므로 제외)
         else{
             
-            if(!board[desX][desY]) continue;
+            if(!board[desX][desY]) continue; // 먹을 것이 없으면 건너뜀 (더 갈 수 있을 지도 모르니 건너뜀)
         
             int eatf = board[desX][desY];
             int ndir = fish[eatf].tmpDir; // ****상어의 방향 update
             tempsum = sum + eatf;
             
-            stateChange(x, y, desX, desY, eatf, 1); // 상어의 위치 상태 변화
+            stateChange(x, y, desX, desY, eatf, 1); // ***********상어의 위치 상태 변화
             sDecis(desX, desY, ndir, tempsum); //******재귀
-            stateChange(x, y, desX, desY, eatf, 0); // 상태 변화 복귀시킴
-            
+            stateChange(x, y, desX, desY, eatf, 0); // **********8상태 변화 복귀시킴    
         }
     }
     // 상태 되돌리는 함수
