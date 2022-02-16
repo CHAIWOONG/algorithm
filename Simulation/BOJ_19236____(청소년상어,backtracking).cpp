@@ -5,6 +5,10 @@
 using namespace std;
 using pii = pair<int,int>;
 
+// backtracking에서 중복 제거시 used를 1로 변화하고, 재귀를 부른뒤, 빠져나오면 used를 0으로 바꾸는 것 처럼,
+// tmp에 임시 저장 후, 끝난다음 tmp를 원래의 board에 다시 씌워주거나,
+// 상태변화 후, 재귀를 부른다음, 상태를 복귀시키는 방법을 사용
+
 struct Fish{
     
     int tmpX;
@@ -119,7 +123,7 @@ void sDecis(int x, int y, int dir, int sum){ // 상어 이동범위 결정 backt
         }
     }
     // 상태 되돌리는 함수
-    copyBd(board, tmpBd, fish, tmpfish); // 다시 되돌린다
+    copyBd(board, tmpBd, fish, tmpfish); // *********** 다시 되돌린다
 }
 
 int main()
