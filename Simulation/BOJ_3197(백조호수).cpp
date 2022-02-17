@@ -56,7 +56,8 @@ void melting(){
             if(!board[nx][ny]) continue;
             
             board[nx][ny] = 0;
-            temp_meltq.push({nx,ny}); // 하루에 한칸씩 녹으므로 녹은건 일단 버퍼에만 저장
+            temp_meltq.push({nx,ny}); // 하루에 한칸씩 녹으므로 녹은건 일단 "버퍼에만" 저장
+            // meltq에 다시 저장하면 계속 녹은게 연쇄적으로 녹는 것이므로 X
         }
     }
     cnt++;
