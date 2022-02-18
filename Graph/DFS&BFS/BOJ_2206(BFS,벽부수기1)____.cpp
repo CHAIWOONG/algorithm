@@ -41,11 +41,12 @@ int bfs() {
             int ny = temp.Y + dy[i];
 
             if (nx < 0 || nx >= row || ny < 0 || ny >= col) continue;
-            
+ 
             if (board[nx][ny] && block) {  // -------------- 목적지가 벽이고, 아직 벽돌을 뚫지 않아봤을 때
                 dis[nx][ny][block - 1] = dis[temp.X][temp.Y][block] + 1;
                 q.push({ {nx,ny},block - 1 }); // block은 -1 감소시킨 채로 queue에 넣는다
             }
+            // if (board[nx][ny] && block && !dis[nx][ny][block-1]) ---- 깰 수 있는 벽돌이 여러개라면 깼을 때의 해당 위치가 방문한 적이 있는지도 확인해야 한다
             
             if (!board[nx][ny] && !dis[nx][ny][block]) { // -----목적지가 갈 수 있는 곳이고 아직 방문하지 않았을 때,
 
