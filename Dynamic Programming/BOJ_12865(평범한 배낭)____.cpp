@@ -6,7 +6,7 @@ int n, mxW;
 int weight[101];
 int value[101];
 int dp[101][100001];
-// dp[i][j] = i개를 확인했을 때, 무게가 j인 경우
+// dp[i][j] = i개(n)를 확인했을 때, 무게(weight)가 j인 경우의 가치합(value)
 
 int main()
 {
