@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// kruskal 알고리즘의 시간복잡도는 union-find의 사용을 통하여 O(ElogE)
+
 vector<int> p(10005,-1);
 
 int find(int x){ // find
