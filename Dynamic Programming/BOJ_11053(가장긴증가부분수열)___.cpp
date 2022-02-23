@@ -22,7 +22,7 @@ int main()
         for(int j=1; j<=i; j++){
             
             if(a[i]>a[j]){ // 현재의 위치 i보다 앞의 것 중에서, 더 작은것들을 확인할 때 있을 때,
-                if(idx<dp[j]) idx = dp[j];
+                if(len<dp[j]) len = dp[j];
                 // 그 dp[j]에는 그 자리 까지의 최대 길이의 증가 부분수열이 있을 것이므로 이를 len에 업데이트
             }
         }
