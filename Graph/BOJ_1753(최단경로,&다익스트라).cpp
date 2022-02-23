@@ -37,7 +37,7 @@ int main(void){
   while(!mnHp.empty()){
     auto cur = mnHp.top(); mnHp.pop(); // {비용, 정점 번호}    
     
-    // 거리가 d에 있는 값과 다를 경우 넘어감
+    // 거리가 d에 있는 값과 다를 경우 넘어감 (heap에서는 삭제된다)
     if(d[cur.Y] != cur.X) continue;
     
     for(auto nxt : adj[cur.Y]){
