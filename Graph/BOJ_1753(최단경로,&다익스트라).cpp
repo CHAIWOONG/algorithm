@@ -26,6 +26,7 @@ int main(void){
     adj[u].push_back({w,v}); // {비용, 정점 번호}
   }
   
+  // *** min heap은 우선순위를 cost에 대해서 비교하도록 구현되어야 한다
   priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > mnHp;
   d[st] = 0;
   
