@@ -24,7 +24,6 @@ int main(void){
   
   for(int i = 1; i <= n; i++) d[i][i] = 0; // 자기 자신과의 거리는 0
   
-  // i를 시작점 j를 끝점, k는 중간점
   for(int mid = 1; mid <= n; mid++) // 중간에 거쳐가야 하는 변수의 for문이 제일 바깥이다
     for(int st = 1; st <= n; st++)
       for(int en = 1; en <= n; en++)
