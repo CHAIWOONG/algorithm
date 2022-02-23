@@ -4,8 +4,6 @@ using namespace std;
 // 현재 테이블에 채워진 값을 불완전한 최단 거리가 아닌, 중간에 다른 정점을 거치지 않았을 때의 현재의 최단 거리로 생각하여 update
 // 시간 복잡도는 O(v^3)
 
-// 상세 경로의 저장 테이블을 통해 실제 최단 경로 출력 가능하도록 구현
-
 const int INF = 0x3f3f3f3f; // 거리가 무한임을 최대의 값으로 나타냄
 int d[105][105];
 int pass[105][105];
@@ -28,13 +26,16 @@ int main(void){
   
   for(int i = 1; i <= n; i++) d[i][i] = 0; // 자기 자신과의 거리는 0
   
-   for(int mid = 1; mid <= n; mid++)
+    for(int mid = 1; mid <= n; mid++)
      for(int st = 1; st <= n; st++)
        for(int en = 1; en <= n; en++)
-         if(d[st][mid] + d[mid][en] < d[st][en]) {
+         if(d[st][mid] + d[mid][en] < d[st][en]){
              d[st][en] = d[st][mid] + d[mid][en];
              pass[st][en] = pass[st][mid]; // mid가 생기게 된다면, 경로 저장에 반영해줌
          }
+  // 따라서 i에서 j로 가는 경로의 경우, pass[i][j] 에 저장된 mid를 거친후,
+  // pass[mid][j]에 저장된 에 따라서 pass[pass[mid][j]][j]로 이동한 후 최종적으로 
+  // j인 값에 도달하게 되면 경로가 된다.
   
   // 최단거리 테이블 전체 출력
   for(int i = 1; i <= n; i++){
@@ -65,4 +66,7 @@ int main(void){
         cout<<"\n";
       }
   }
+  // 경로: st - pass[st][en] - pass[pass[st][en]][en] - ... - en
+  
+  
 }
