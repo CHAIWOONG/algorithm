@@ -26,19 +26,19 @@ ___
 ```
 ```c++
   int sum=0, st=0, en=0;
-    while(1){
-        if(sum>k) sum-=stick[++st]; // pase마다 st는 n전까지 증가
-        else if(en==1000001){  // 만약 증가한 en이 n과 같아져 버려 종료하는 분기가 필요
-            cout<<"0 0";
-            break;
-        }
-        else sum+=stick[++en]; // 일반적인 경우에는 하나의 pase에서 en을 증가
-        
-        if(sum==k){  // 하나의 pase에서 en 증가에 따른 상태의 변화 확인
-            cout<<st<<" "<<en;
-            break;
-        }
-    }
+  while(1){
+      if(sum>k) sum-=stick[++st]; // pase마다 st는 n전까지 증가
+      else if(en==1000001){  // 만약 증가한 en이 n과 같아져 버려 종료하는 분기가 필요
+          cout<<"0 0";
+          break;
+      }
+      else sum+=stick[++en]; // 일반적인 경우에는 하나의 pase에서 en을 증가
+
+      if(sum==k){  // 하나의 pase에서 en 증가에 따른 상태의 변화 확인
+          cout<<st<<" "<<en;
+          break;
+      }
+  }
 ```
 ___
 
