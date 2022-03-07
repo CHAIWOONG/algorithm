@@ -8,9 +8,20 @@ ___
  - 이후 st가 증가 되어야 하면 증가 후 위를 반복
 ```c++
   for (int st = 0; st < n; st++) { // 하나의 pase에서 st는 n전까지 증가
-        while (en < n &&  ~~~) en++;
-        if (en == n) break; // 증가한 en이 n과 같아져 버리면 종료 (런타임오류 방지)
+        while (en < n &&  ~~~) en++; // 하나의 pase에서 en을 증가시키며 상태의 변화 확인
+        if (en == n) break; // 만약 증가한 en이 n과 같아져 버리면 종료하는 분기가 필요한지 확인 (런타임오류 방지)
         ~~~
+  }
+```
+```c++
+  for(int st=0; st<n; st++){
+        while(en<n){ // 하나의 pase에서 en을 증가시키며 상태의 변화 확인
+            if(used[a[en]]) break;
+            used[a[en]] = 1;
+            en++;
+        }
+        ans += (en-st); 
+        used[a[st]] = 0; // st가 증가하게 될것이므로 바뀌어야하는 변화에 대처하고 st의 변화만 적용하여 나머지는 
   }
 ```
 
