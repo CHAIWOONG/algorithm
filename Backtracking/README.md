@@ -1,6 +1,6 @@
 # Backtracking
 ___
-## code의 개요
+## 코드 example
 
 - if (base condition에 해당하는 경우 (k==n))
 
