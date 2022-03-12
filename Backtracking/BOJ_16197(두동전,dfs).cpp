@@ -17,7 +17,7 @@ int outcheck(int r, int c){ // 나가면 return 1
     else return 0;
 }
 
-void backTK(int k, int r1, int c1, int r2, int c2){
+void backTK(int k, int r1, int c1, int r2, int c2){ // **bfs로 하면 같은 레벨에서 조건의 처치가 곤란 -> dfs 재귀를 통해 레벨끼리 비교
     
     if(k==10) return; // 10번까지 오면 실패로 취급
     else{
