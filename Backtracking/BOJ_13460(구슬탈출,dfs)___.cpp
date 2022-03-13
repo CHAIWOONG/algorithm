@@ -16,7 +16,7 @@ int wallcheck(int r, int c){ // 벽이면 1
 
 void dfs(int k, int redR, int redC, int bluR, int bluC){
     
-    if(k==11) return; // 10단계까지 오면 실패로 취급
+    if(k==11) return; // 10단계 넘어가면 실패로 취급
     if(k>=ans) return; // 이미 최소답 보다 k가 크면 볼필요 없음 (복잡도 최소화)
 
     for(int i=0; i<4; i++){
