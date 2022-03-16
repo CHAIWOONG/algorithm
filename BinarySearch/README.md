@@ -2,7 +2,7 @@
 - 정렬되어 있는 데이터에서 원하는 값을 찾을 때 효율적으로 사용할 수 있는 알고리즘 O(logn)의 시간복잡도
 
 - 이분 탐색(Binary Search)은 결정 문제(Decision Problem)의 답이 이분적일 때 사용할 수 있는 탐색 기법
-이때 결정 문제는 답이 Yes or No인 문제를 의미하며 (이분 탐색 문제에서는) 보통 1개의 parameter를 가짐
+이때 결정 문제는 답이 Yes or No인 문제를 의미하며 (이분 탐색 문제에서는) 보통 1개의 parameter를 가짐 (parametric search의 방법으로 이분 탐색을 사용하는 경우)
 
 ```c++
   // left는 첫 인덱스
