@@ -41,11 +41,12 @@ int main(void){
         if(d[cur.Y] != cur.X) continue;
 
         for(auto nxt : adj[cur.Y]){
-          if(d[nxt.Y] <= d[cur.Y]+nxt.X) continue;
-          // cur를 거쳐가는 것이 더 작은 값을 가질 경우
-          // d[nxt.Y]을 갱신하고 heap에 (거리, nxt.Y)를 일단 추가
-          d[nxt.Y] = d[cur.Y]+nxt.X;
-          mnHp.push({d[nxt.Y],nxt.Y}); //heap에 (cost, 시작점) 추가
+              if(d[nxt.Y] <= d[cur.Y]+nxt.X) continue;
+            
+              // cur를 거쳐가는 것이 더 작은 값을 가질 경우
+              // d[nxt.Y]을 갱신하고 heap에 (거리, nxt.Y)를 일단 추가
+              d[nxt.Y] = d[cur.Y]+nxt.X;
+              mnHp.push({d[nxt.Y],nxt.Y}); //heap에 (cost, 시작점) 추가
         }
     }
 
